@@ -1,4 +1,4 @@
-name: Build Tweak Dylib
+name: Build Tweak
 
 on: [push]
 
@@ -6,25 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Theos & Toolchain
+      - uses: actions/checkout@v3
+      
+      - name: Setup Theos
         run: |
           sudo apt-get update
           sudo apt-get install -y clang make git ldid
           export THEOS=/opt/theos
           sudo git clone --recursive https://github.com/theos/theos.git $THEOS
-
-      - name: Compile Dylib and Package Deb
+          
+      - name: Make
         run: |
           export THEOS=/opt/theos
           make
-
-      - name: Upload Artifacts
+          
+      - name: Upload
         uses: actions/upload-artifact@v3
         with:
-          name: Compiled-Liber-Files
-          path: |
-            obj/
-            packages/
+          name: package
+          path: packages/*.deb
