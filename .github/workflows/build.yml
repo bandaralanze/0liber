@@ -22,7 +22,7 @@ jobs:
       - name: Make
         run: |
           export THEOS=/opt/theos
-          make
+          make ARCHS=arm64
           
       - name: Upload
         uses: actions/upload-artifact@v4
