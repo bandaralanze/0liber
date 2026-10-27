@@ -11,9 +11,11 @@ jobs:
       - name: Setup Theos & Toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang make git curl ldid
+          sudo apt-get install -y clang make git curl
           export THEOS=~/theos
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          sudo curl -L -o ~/theos/bin/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid.x86_64
+          sudo chmod +x ~/theos/bin/ldid
           
       - name: Make
         run: |
