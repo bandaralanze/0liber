@@ -8,20 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Theos
+      - name: Setup Theos & Toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang make git curl
-          sudo mkdir -p /opt/theos
-          sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
-          sudo rm -rf /opt/theos/sdks
-          sudo git clone https://github.com/theos/sdks.git /opt/theos/sdks
-          sudo curl -L -o /opt/theos/bin/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid.x86_64
-          sudo chmod +x /opt/theos/bin/ldid
+          sudo apt-get install -y clang make git curl ldid
+          export THEOS=~/theos
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
           
       - name: Make
         run: |
-          export THEOS=/opt/theos
+          export THEOS=~/theos
           make ARCHS=arm64
           
       - name: Upload
