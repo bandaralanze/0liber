@@ -1,0 +1,9 @@
+Package: com.ifah.liber.permanent
+Name: Liber Permanent
+Depends: mobilesubstrate
+Version: 2.0.0
+Architecture: iphoneos-arm
+Description: Permanent unlocked version of Liber tweak, bypassing all IPAwind license checks and server bindings.
+Maintainer: Faris
+Author: Faris
+Section: Tweaks
