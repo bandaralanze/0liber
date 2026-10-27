@@ -11,9 +11,11 @@ jobs:
       - name: Setup Theos
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang make git ldid
+          sudo apt-get install -y clang make git wget
           export THEOS=/opt/theos
           sudo git clone --recursive https://github.com/theos/theos.git $THEOS
+          sudo wget -qO /opt/theos/bin/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid.x86_64
+          sudo chmod +x /opt/theos/bin/ldid
           
       - name: Make
         run: |
